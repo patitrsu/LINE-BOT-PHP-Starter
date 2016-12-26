@@ -1,12 +1,12 @@
 <?php
 $access_token = 'RZ1r4Q9oSx8PfqfpR+ZPMaiRUg9IZesij7t6Vz10LPO4ODUyJJ+a/I/6l9wx/aYb8xZFeY8THKZpv68/u3rEKaiQ/LHuzaUP4iBRqqs/2bVAowFli+8pwR/bMzudjr+UotuGXVZgEh0F0T7qjO3obAdB04t89/1O/w1cDnyilFU=';
+
 // Get POST body content
-$content = file_get_contents("/myFile.json");
-echo $content;
+$content = file_get_contents('php://myFile.json');
 // Parse JSON
-//$events = json_decode($content, true);
+$events = json_decode($content, true);
 // Validate parsed JSON data
-//if (!is_null($events['events'])) {
+if (!is_null($events['events'])) {
   // Loop through each event
   foreach ($events['events'] as $event) {
     // Reply only when message sent is in 'text' format
@@ -44,4 +44,4 @@ echo $content;
     }
   }
 }
-echo $content;
+echo "OK";
