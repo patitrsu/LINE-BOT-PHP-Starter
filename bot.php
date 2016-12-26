@@ -4,9 +4,9 @@ $access_token = 'RZ1r4Q9oSx8PfqfpR+ZPMaiRUg9IZesij7t6Vz10LPO4ODUyJJ+a/I/6l9wx/aY
 $content = file_get_contents("/myFile.json");
 echo $content;
 // Parse JSON
-$events = json_decode($content, true);
+//$events = json_decode($content, true);
 // Validate parsed JSON data
-if (!is_null($events['events'])) {
+//if (!is_null($events['events'])) {
   // Loop through each event
   foreach ($events['events'] as $event) {
     // Reply only when message sent is in 'text' format
@@ -44,4 +44,4 @@ if (!is_null($events['events'])) {
     }
   }
 }
-echo "OK";
+echo $content;
