@@ -1,21 +1,13 @@
 {
- 
-  "events": [
-
-      {
-        "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
-        "type": "message",
-        "timestamp": 1462629479859,
-        "source": {
-             "type": "user",
-             "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
-         },
-         "message": {
-             "id": "325708",
-             "type": "text",
-             "text": "Hello, world"
-          }
-      }
-  ]
-  
+    "to": "ubef4da75535c95f60a23379739fc3221",
+    "messages":[
+        {
+            "type":"text",
+            "text":"Hello, world1"
+        },
+        {
+            "type":"text",
+            "text":"Hello, world2"
+        }
+    ]
 }
