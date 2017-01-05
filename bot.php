@@ -8,33 +8,33 @@ $content = {"to":"ubef4da75535c95f60a23379739fc3221","message":[{"type":"text","
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
-//if (!is_null($events['events'])) {
+if (!is_null($events['to'])) {
   // Loop through each event
-  //foreach ($events['events'] as $event) {
+  foreach ($events['to'] as $event) {
     // Reply only when message sent is in 'text' format
-  //  if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+    if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
       // Get text sent
-    //  $text = $event['message']['text'];
+      $text = $event['message']['text'];
       // Get replyToken
-    //  $replyToken = $event['replyToken'];
+     // $replyToken = $event['replyToken'];
 
       // Build message to reply back
-     // $messages = [
-     //   'type' => 'text',
-     //   'text' => $text
-     // ];
+      $messages = [
+        'type' => 'text',
+        'text' => $text
+      ];
 
       // Make a POST Request to Messaging API to reply to sender
       $url = 'https://api.line.me/v2/bot/message/push';
       $data = [
-      //  'replyToken' => $replyToken,
+       // 'replyToken' => $replyToken,
         'messages' => [$messages],
       ];
       $post = json_encode($data);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
       $ch = curl_init($url);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST"); 
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
