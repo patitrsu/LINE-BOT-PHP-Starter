@@ -32,6 +32,7 @@ $json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","
         'messages' => [$messages],
       ];*/
       $post = json_encode($json);
+      $url = 'https://api.line.me/v2/bot/message/push';
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
       $ch = curl_init($url);
