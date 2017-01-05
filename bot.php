@@ -7,7 +7,7 @@ $json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","
 
 //$content = file_get_contents('php://input');
 // Parse JSON
-$events = json_decode($json, true);
+//$events = json_decode($json, true);
 // Validate parsed JSON data
 /*if (!is_null($events['events'])) {
   // Loop through each event
@@ -31,7 +31,7 @@ $events = json_decode($json, true);
         'replyToken' => $replyToken,
         'messages' => [$messages],
       ];*/
-      $post = json_encode($event);
+      $post = json_encode($json);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
       $ch = curl_init($url);
