@@ -1,27 +1,14 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 $access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h78xZFeY8THKZpv68/u3rEKaiQ/LHuzaUP4iBRqqs/2bUzqFjwQIxNONJ2BpEy2eVNwmeoNadkH7MLzX7aHcAkIAdB04t89/1O/w1cDnyilFU=';
 $proxy = 'http://fixie:XSPmbLgrvhlfM9U@velodrome.usefixie.com:80';
 $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 // Get POST body content
-//$json = '{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","text":"helloworld"}]}';
-$json = '{
-  "to":"ubef4da75535c95f60a23379739fc3221",
-  "message": {
-    "type":"text",
-    "text":"helloworld"
-  }
-}';
-
-//$json = '{  "to":"ubef4da75535c95f60a23379739fc3221",  "message": {    "type":"text",    "text":"helloworld",    },  }';
-
-//$content = file_get_contents('php://input');
+$content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($json, true);
+echo $events;
 // Validate parsed JSON data
-/*if (!is_null($events['events'])) {
+if (!is_null($events['events'])) {
   // Loop through each event
   foreach ($events['events'] as $event) {
     // Reply only when message sent is in 'text' format
@@ -38,13 +25,12 @@ $events = json_decode($json, true);
       ];
 
       // Make a POST Request to Messaging API to reply to sender
-      $url = 'https://api.line.me/v2/bot/message/push';
+      $url = 'https://api.line.me/v2/bot/message/reply';
       $data = [
         'replyToken' => $replyToken,
         'messages' => [$messages],
-      ];*/
-      $post = json_encode($events);
-      $url = 'https://api.line.me/v2/bot/message/push';
+      ];
+      $post = json_encode($event);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
       $ch = curl_init($url);
@@ -59,7 +45,7 @@ $events = json_decode($json, true);
       curl_close($ch);
 
       echo $result . "\r\n";
-   // }
-  // }
-// }
+    }
+  }
+}
 echo "OK";
