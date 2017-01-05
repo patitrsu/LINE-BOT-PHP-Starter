@@ -6,11 +6,12 @@ $access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h
 $proxy = 'http://fixie:XSPmbLgrvhlfM9U@velodrome.usefixie.com:80';
 $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 // Get POST body content
-$json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","text":"helloworld"}]}";
+//$json = '{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","text":"helloworld"}]}';
+$json = '{  "to":"ubef4da75535c95f60a23379739fc3221",  "message": {    "type":"text",    "text":"helloworld",    },  }';
 
 //$content = file_get_contents('php://input');
 // Parse JSON
-//$events = json_decode($json, true);
+$events = json_decode($json, true);
 // Validate parsed JSON data
 /*if (!is_null($events['events'])) {
   // Loop through each event
@@ -34,7 +35,7 @@ $json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","
         'replyToken' => $replyToken,
         'messages' => [$messages],
       ];*/
-      $post = json_encode($json);
+      $post = json_encode($events);
       $url = 'https://api.line.me/v2/bot/message/push';
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
