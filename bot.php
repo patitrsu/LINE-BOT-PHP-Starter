@@ -3,7 +3,7 @@ $access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h
 $proxy = 'http://fixie:XSPmbLgrvhlfM9U@velodrome.usefixie.com:80';
 $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 // Get POST body content
-$json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","text":"helloworld"}]}";
+$json = "{"to":"ubef4da75535c95f60a23379739fc3221","message":[{"type":"text"},{"text":"Helloworld"}] }";
 
 //$content = file_get_contents('php://input');
 // Parse JSON
@@ -32,7 +32,8 @@ $json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","
         'messages' => [$messages],
       ];*/
       $post = json_encode($json);
-      $url = 'https://api.line.me/v2/bot/message/push';
+      echo $post ;
+  /*    $url = 'https://api.line.me/v2/bot/message/push';
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
       $ch = curl_init($url);
@@ -46,7 +47,7 @@ $json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","
       $result = curl_exec($ch);
       curl_close($ch);
 
-      echo $result . "\r\n";
+      echo $result . "\r\n";*/
     }
   }
 }
