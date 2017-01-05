@@ -3,8 +3,8 @@ $access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h
 $proxy = 'http://fixie:XSPmbLgrvhlfM9U@velodrome.usefixie.com:80';
 $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 // Get POST body content
-$content = {"to":"ubef4da75535c95f60a23379739fc3221","messages":[{"type":"text","text":"HelloWorld"}]};
-$content = file_get_contents('https://github.com/patitrsu/LINE-BOT-PHP-Starter/blob/master/myFile.Json');
+$content = {"to":"ubef4da75535c95f60a23379739fc3221","message":[{"type":"text","text":"HelloWorld"}]}
+$content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
@@ -25,7 +25,7 @@ if (!is_null($events['events'])) {
       ];
 
       // Make a POST Request to Messaging API to reply to sender
-      $url = 'https://api.line.me/v2/bot/message/reply';
+      $url = 'https://api.line.me/v2/bot/message/push';
       $data = [
         'replyToken' => $replyToken,
         'messages' => [$messages],
