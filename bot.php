@@ -3,20 +3,21 @@ $access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h
 $proxy = 'http://fixie:XSPmbLgrvhlfM9U@velodrome.usefixie.com:80';
 $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 // Get POST body content
-$content = {"to":"ubef4da75535c95f60a23379739fc3221","message":[{"type":"text","text":"HelloWorld"}]};
+$json = "{"to":"ubef4da75535c95f60a23379739fc3221" , "message":[{"type":"text","text":"helloworld"}]}";
+
 //$content = file_get_contents('php://input');
 // Parse JSON
-$events = json_decode($content, true);
+$events = json_decode($json, true);
 // Validate parsed JSON data
-if (!is_null($events['to'])) {
+/*if (!is_null($events['events'])) {
   // Loop through each event
-  foreach ($events['to'] as $event) {
+  foreach ($events['events'] as $event) {
     // Reply only when message sent is in 'text' format
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
       // Get text sent
       $text = $event['message']['text'];
       // Get replyToken
-     // $replyToken = $event['replyToken'];
+      $replyToken = $event['replyToken'];
 
       // Build message to reply back
       $messages = [
@@ -27,14 +28,14 @@ if (!is_null($events['to'])) {
       // Make a POST Request to Messaging API to reply to sender
       $url = 'https://api.line.me/v2/bot/message/push';
       $data = [
-       // 'replyToken' => $replyToken,
+        'replyToken' => $replyToken,
         'messages' => [$messages],
-      ];
-      $post = json_encode($data);
+      ];*/
+      $post = json_encode($event);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
       $ch = curl_init($url);
-      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST"); 
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
