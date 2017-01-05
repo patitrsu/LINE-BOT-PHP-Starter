@@ -1,9 +1,9 @@
 <?php
-$access_token = 'O7gesutFtoTWet1OutGY1PCTKsqXh12y76TAUGV5HXjGSMYd7sj6nm0vOr/Cdgyl8xZFeY8THKZpv68/u3rEKaiQ/LHuzaUP4iBRqqs/2bXm5jhkGCqitD/1han0Ev8XIXCqk4fiVZoO55mnRiuXSgdB04t89/1O/w1cDnyilFU=';
+$access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h78xZFeY8THKZpv68/u3rEKaiQ/LHuzaUP4iBRqqs/2bUzqFjwQIxNONJ2BpEy2eVNwmeoNadkH7MLzX7aHcAkIAdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
-$content = file_get_contents('http://example.com/example.json/');
-// Parse JSON 
+$content = file_get_contents('php://input');
+// Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
@@ -45,4 +45,3 @@ if (!is_null($events['events'])) {
   }
 }
 echo "OK";
-?>
