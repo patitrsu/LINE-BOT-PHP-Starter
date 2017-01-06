@@ -11,8 +11,6 @@ $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
-
- echo $events;
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
   // Loop through each event
@@ -37,6 +35,7 @@ if (!is_null($events['events'])) {
         'messages' => [$messages],
       ];
       $post = json_encode($data);
+      echo $post;
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
        $ch = curl_init($url);
@@ -56,5 +55,4 @@ if (!is_null($events['events'])) {
   }
 }
 echo "OK";
-echo $events;
 ?>
