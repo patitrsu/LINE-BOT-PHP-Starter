@@ -1,12 +1,16 @@
+
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $access_token = '5gU8HodUfwdJ7JbvJMYoE5I2CSYdl5G8cB8mfmUXmN4CySTBlf5SkRQtnS54h8h78xZFeY8THKZpv68/u3rEKaiQ/LHuzaUP4iBRqqs/2bUzqFjwQIxNONJ2BpEy2eVNwmeoNadkH7MLzX7aHcAkIAdB04t89/1O/w1cDnyilFU=';
 $proxy = 'http://fixie:XSPmbLgrvhlfM9U@velodrome.usefixie.com:80';
 $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
+
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
-$events = json_decode($json, true);
-echo $events;
+$events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
   // Loop through each event
@@ -30,10 +34,10 @@ if (!is_null($events['events'])) {
         'replyToken' => $replyToken,
         'messages' => [$messages],
       ];
-      $post = json_encode($event);
+      $post = json_encode($data);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-      $ch = curl_init($url);
+       $ch = curl_init($url);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
@@ -45,7 +49,9 @@ if (!is_null($events['events'])) {
       curl_close($ch);
 
       echo $result . "\r\n";
+
     }
   }
 }
 echo "OK";
+?>
