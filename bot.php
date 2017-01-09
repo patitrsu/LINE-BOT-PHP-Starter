@@ -25,9 +25,21 @@ if (!is_null($events['events'])) {
       $user = $event['source']['userId'];
 
       // Build message to reply back
-      $messages = [
+      $messages = 
+      [
+        'type' => 'text',
+        'text' => $text
+      ],
+      
+      [
         'type' => 'text',
         'text' => $user
+      ],
+
+      [
+      'type' => 'text',
+      'text' => $replyToken
+
       ];
 
       // Make a POST Request to Messaging API to reply to sender
