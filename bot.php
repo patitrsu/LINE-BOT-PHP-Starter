@@ -8,6 +8,7 @@ $proxyauth = 'velodrome:XSPmbLgrvhlfM9U';
 
 // Get POST body content
 $content = file_get_contents('php://input');
+echo($content);
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
