@@ -24,6 +24,12 @@ if (!is_null($events['events'])) {
       // Get replyToken
       $replyToken = $event['replyToken'];
 
+      $USER = [
+        'type' => 'user',
+        'userId' => $user
+
+      ];
+
       // Build message to reply back
       $messages = [
         'type' => 'text',
@@ -35,7 +41,7 @@ if (!is_null($events['events'])) {
       $data = [
         'replyToken' => $replyToken,
         'messages' => [$messages],
-        'userId' => $user
+        'userId' => $USER
       ];
       $post = json_encode($data);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
